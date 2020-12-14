@@ -4,7 +4,8 @@ require('dotenv').config();
 const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
-const AuthRoutes = require('./routes/auth')
+const AuthRoutes = require('./routes/auth');
+const { handleErrors } = require('./controllers/errors');
 
 
 app.use(bodyParser.json());
@@ -13,13 +14,7 @@ app.use(cookieParser());
 
 app.use('/auth' , AuthRoutes);
 
-app.use((err , req , res , next) => {
-    res.status = 500;
-    res.send({
-        err,
-        message: "Something broke"
-    })
-})
+app.use(handleErrors);
 
 mongoose.connect(process.env.MONGO_URI , {dbName: "todoapp" ,useNewUrlParser:true , useUnifiedTopology:true});
 
