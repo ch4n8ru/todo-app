@@ -12,18 +12,18 @@ app.use(bodyParser.json());
 
 app.use(cookieParser());
 
-app.use('/auth' , AuthRoutes);
+app.use('/auth', AuthRoutes);
 
 app.use(handleErrors);
 
-mongoose.connect(process.env.MONGO_URI , {dbName: "todoapp" ,useNewUrlParser:true , useUnifiedTopology:true});
+mongoose.connect(process.env.MONGO_URI, { dbName: "todoapp", useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
 
-mongoose.connection.on('open' , () => {
+mongoose.connection.on('open', () => {
     app.listen(process.env.APP_PORT, () => {
-        console.log(`App started; listening on port ${process.env.APP_PORT}`) 
+        console.log(`App started; listening on port ${process.env.APP_PORT}`)
     });
 })
 
-mongoose.connection.on('error' , (err) => {
+mongoose.connection.on('error', (err) => {
     console.log('Could not connect to database ' + err)
 })

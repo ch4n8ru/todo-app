@@ -9,11 +9,16 @@ class CustomError extends Error {
 }
 
 const handleErrors = (err, req, res, next) => {
-    const { message, name, errorCode, statusCode } = err;
-    res.status(statusCode).json({
-        name,
-        errorCode,
-        message,
+    if(err instanceof CustomError){
+        const { message, name, errorCode, statusCode } = err;
+        return res.status(statusCode).json({
+            name,
+            errorCode,
+            message,
+        })  
+    }
+    res.status(500).json({
+        err
     })
 }
 
