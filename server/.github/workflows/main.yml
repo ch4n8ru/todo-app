@@ -1,4 +1,4 @@
-name: Node.js CI
+name: todo-app server CI
 
 on: [push]
 
