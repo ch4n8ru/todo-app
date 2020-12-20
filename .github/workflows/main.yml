@@ -5,9 +5,6 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [8.x, 10.x, 12.x]
     defaults: 
       run:
         working-directory: ./server
@@ -15,10 +12,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 14.x
       - run: npm install
       - name: Create mongo Docker container
         id: build_mongo_docker
@@ -30,11 +27,3 @@ jobs:
         run: npm test
         env:
           CI: true
-          # APP_PORT: ${{secrets.APP_PORT}}
-          # ACCESS_TOKEN_SECRET: ${{secrets.ACCESS_TOKEN_SECRET}}
-          # ACCESS_TOKEN_LIFE: ${{secrets.ACCESS_TOKEN_LIFE}}
-          # SALT_ROUNDS: ${{secrets.SALT_ROUNDS}}
-          # REFRESH_TOKEN_SECRET: ${{secrets.REFRESH_TOKEN_SECRET}}
-          # REFRESH_TOKEN_LIFE: ${{secrets.REFRESH_TOKEN_LIFE}}
-          # MONGO_URI: ${{secrets.MONGO_URI}}
-          # MONGO_DB_NAME: ${{secrets.MONGO_DB_NAME}}
