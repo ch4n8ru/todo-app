@@ -23,7 +23,7 @@ jobs:
           image-version: latest
           port: 27017
       - name: Run tests
-      - run: npm test
+          run: npm test
         env:
           CI: true
           APP_PORT: ${{secrets.APP_PORT}}
