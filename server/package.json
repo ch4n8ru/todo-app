@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=dev nodemon index.js",
-    "test": "NODE_ENV=test mocha"
+    "test": "NODE_ENV=test mocha -t 30000 --exit"
   },
   "author": "",
   "license": "ISC",
