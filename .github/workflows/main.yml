@@ -11,12 +11,12 @@ jobs:
         node-version: [8.x, 10.x, 12.x]
     steps:
       - uses: actions/checkout@v2
+      - name: switch folder
+        run: cd server
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: switch folder
-        run: cd server
       - run: npm install
       - name: Create mongo Docker container
         id: build_mongo_docker
