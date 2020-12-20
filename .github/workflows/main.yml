@@ -3,7 +3,6 @@ name: todo-app server CI
 on: [push]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -12,6 +11,7 @@ jobs:
     defaults: 
       run:
         working-directory: ./server
+  environment: test
 
     steps:
       - uses: actions/checkout@v2
@@ -28,7 +28,6 @@ jobs:
           port: 27017
       - name: Run tests
         run: npm test
-        environment: test
         env:
           CI: true
           # APP_PORT: ${{secrets.APP_PORT}}
