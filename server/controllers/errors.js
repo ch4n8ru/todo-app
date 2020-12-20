@@ -1,8 +1,7 @@
 class CustomError extends Error {
-    constructor(message, statusCode = 500, name = "Error", errorCode = "ERR-0") {
+    constructor(message, statusCode = 500, errorCode = "ERR-0") {
         super()
         this.message = message;
-        this.name = name;
         this.errorCode = errorCode;
         this.statusCode = statusCode;
     }
@@ -10,9 +9,8 @@ class CustomError extends Error {
 
 const handleErrors = (err, req, res, next) => {
     if(err instanceof CustomError){
-        const { message, name, errorCode, statusCode } = err;
+        const { message, errorCode, statusCode } = err;
         return res.status(statusCode).json({
-            name,
             errorCode,
             message,
         })  

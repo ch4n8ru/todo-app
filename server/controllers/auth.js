@@ -11,7 +11,7 @@ exports.loginController = async (req, res, next) => {
     const foundUser = await userModel.findOne({ email: email }).exec();
 
     if (!foundUser) {
-        next(new CustomError("User doesn't exist", 401, "INVALID USER", "ERR-INV-USER"))
+        next(new CustomError("User doesn't exist", 401,  "ERR-INV-USER"))
         return
     }
 
@@ -19,7 +19,7 @@ exports.loginController = async (req, res, next) => {
         const passwordCheck = await bcrypt.compare(password, foundUser.password);
 
         if (!passwordCheck) {
-            throw new CustomError("Authentication failed");
+            throw new CustomError("Authentication failed", 401,"ERR_INV_CRED");
         }
         const token = jwt.sign(
             {
@@ -55,7 +55,7 @@ exports.loginController = async (req, res, next) => {
 
         await userSession.save()
 
-        res.status(201).cookie("AuthToken", token, { expires: new Date(Date.now + process.env.ACCESS_TOKEN_LIFE), httpOnly: true }).json({
+        res.status(200).cookie("AuthToken", token, { expires: new Date(Date.now + process.env.ACCESS_TOKEN_LIFE), httpOnly: true }).json({
             token,
             refreshToken
         })
@@ -146,7 +146,7 @@ exports.signupController = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         {
-            next(new CustomError(errors.array()[0].msg, 422))
+            next(new CustomError(errors.array()[0].msg, 422, "ERR-VAL"))
             // break out of callback after propogating error
             return
         }
