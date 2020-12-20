@@ -12,6 +12,10 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+      - name: create env file
+        run: |
+          touch .env
+          echo ${{ secrets }} >> .env
       - name: Use Node.js 14.x
         uses: actions/setup-node@v1
         with:
