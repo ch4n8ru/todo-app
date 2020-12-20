@@ -8,7 +8,12 @@ const { expect, assert } = chai;
 chai.use(chaiHttp);
 
 before((done) => {
-    mongoose.connect(process.env.MONGO_URI, { dbName: process.env.MONGO_DB_NAME, useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+    try{
+        mongoose.connect(process.env.MONGO_URI, { dbName: process.env.MONGO_DB_NAME, useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
+    }
+    catch(err){
+        done(err)
+    }
     mongoose.connection.on('open', async () => {
         console.log(`Connected to Database ${process.env.MONGO_DB_NAME}`)
         try {
