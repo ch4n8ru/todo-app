@@ -9,13 +9,13 @@ chai.use(chaiHttp);
 
 before((done) => {
     try{
+        console.log(`Connected to Database ${process.env.MONGO_DB_NAME} ${process.env.MONGO_URI}`)
         mongoose.connect(process.env.MONGO_URI, { dbName: process.env.MONGO_DB_NAME, useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
     }
     catch(err){
         done(err)
     }
     mongoose.connection.on('open', async () => {
-        console.log(`Connected to Database ${process.env.MONGO_DB_NAME}`)
         try {
             await mongoose.connection.db.dropDatabase()
             console.log(`Dropping database ${process.env.MONGO_DB_NAME}`)
