@@ -135,7 +135,7 @@ exports.refreshTokenController = async (req, res, next) => {
         }
     }
     catch (err) {
-        next(new CustomError("Session Ended", 440))
+        next(new CustomError("Session Ended", 440, "ERR-INV-SESSION"))
     }
 }
 
