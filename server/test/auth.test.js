@@ -8,10 +8,10 @@ const { expect, assert } = chai;
 chai.use(chaiHttp);
 
 before((done) => {
-    try{
+    try {
         mongoose.connect(process.env.MONGO_URI, { dbName: process.env.MONGO_DB_NAME, useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true });
     }
-    catch(err){
+    catch (err) {
         done(err)
     }
     mongoose.connection.on('open', async () => {
@@ -32,7 +32,7 @@ before((done) => {
     })
 })
 
-describe("Authentication", (done) => {
+describe("Authentication", () => {
     describe("Sign Up", () => {
         it("signs up users", done => {
             chai.request(app)
@@ -92,7 +92,7 @@ describe("Authentication", (done) => {
     })
 
 
-    describe("login", done => {
+    describe("POST login", () => {
         it("logs in users", done => {
             chai.request(app)
                 .post('/auth/login')
@@ -104,6 +104,111 @@ describe("Authentication", (done) => {
                     assert.equal(res.status, 200, "Should return 200 status code")
                     assert.hasAllKeys(res.body, ['token', 'refreshToken'])
                     // assert.property(res.cookie, "AuthToken")
+                    if (err) done(err)
+                    done()
+                })
+        })
+
+        it("throws error for users that dont exist yet", done => {
+            chai.request(app)
+                .post('/auth/login')
+                .send({
+                    "email": "test1@abc.com",
+                    "password": "234rewWTw3#",
+                })
+                .end((err, res) => {
+                    assert.equal(res.status, 401, "Should throw error for invalid email")
+                    assert.deepEqual(res.body, {
+                        "message": "User doesn't exist",
+                        "errorCode": "ERR-INV-USER"
+                    })
+                    if (err) done(err)
+                    done()
+                })
+        })
+
+        it("should throw error for invalid password", done => {
+            chai.request(app)
+                .post('/auth/login')
+                .send({
+                    "email": "test@abc.com",
+                    "password": "234rewWTw3",
+                })
+                .end((err, res) => {
+                    assert.equal(res.status, 401, "Should throw error for invalid password")
+                    assert.deepEqual(res.body, {
+                        "message": "Authentication failed",
+                        "errorCode": "ERR_INV_CRED"
+                    })
+                    if (err) done(err)
+                    done()
+                })
+        })
+    })
+
+    describe("POST logout", () => {
+        it("logs out users", done => {
+            chai.request(app)
+                .post("/auth/logout")
+                .send({
+                    "token": "asdasdasdjansidvubapsivuboaigeargaeg"
+                })
+                .end((err, res) => {
+                    assert.equal(res.status, 200)
+                    assert.deepEqual(res.body, {
+                        "success": true
+                    })
+                    if (err) done(err)
+                    done()
+                })
+        })
+    })
+
+    describe("POST refresh tokens", () => {
+        let tokens;
+        before(done => {
+            chai.request(app)
+                .post('/auth/login')
+                .send({
+                    "email": "test@abc.com",
+                    "password": "234rewWTw3#",
+                })
+                .end((err, res) => {
+                    if (err) done(err)
+                    tokens = res.body;
+                    done()
+                })
+        })
+
+        it("refreshes token for a valid token, refreshToken pair", done => {
+            chai.request(app)
+                .post('/auth/refreshToken')
+                .send({
+                    "token": `${tokens.token}`,
+                    "refreshToken": `${tokens.refreshToken}`
+                })
+                .end((err, res) => {
+                    assert.equal(res.status, 201, "Should return 201 status code")
+                    assert.hasAllKeys(res.body, ['token', 'refreshToken'])
+                    if (err) done(err)
+                    done()
+                })
+        })
+
+        it("throws error for an invalid token, refreshToken pair", done => {
+            chai.request(app)
+                .post('/auth/refreshToken')
+                .send({
+                    "token": `${tokens.token}`,
+                    "refreshToken": `${tokens.refreshToken.slice(1)}`
+                })
+                .end((err, res) => {
+                    assert.equal(res.status, 440, "Should return 440 status code")
+                    assert.deepEqual(res.body,
+                        {
+                            "message": "Session Ended",
+                            "errorCode": "ERR-INV-SESSION"
+                        })
                     if (err) done(err)
                     done()
                 })
