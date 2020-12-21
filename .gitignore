@@ -2,3 +2,4 @@
 /server/.env
 server/.test.env
 server/.dev.env
+server/.nyc_output

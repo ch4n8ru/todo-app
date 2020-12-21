@@ -6,7 +6,8 @@
   "scripts": {
     "start": "npm run start:dev",
     "start:dev": "NODE_ENV=dev nodemon index.js",
-    "test": "NODE_ENV=test mocha -t 30000 --exit"
+    "test": "NODE_ENV=test mocha -t 30000 --exit",
+    "test:report": "NODE_ENV=test nyc --reporter=text mocha -t 30000 --exit"
   },
   "author": "",
   "license": "ISC",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
-    "mocha": "^8.2.1"
+    "mocha": "^8.2.1",
+    "nyc": "^15.1.0"
   }
 }
