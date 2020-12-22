@@ -214,4 +214,79 @@ describe("Authentication", () => {
                 })
         })
     })
+
+    describe("AUTH checker", () => {
+        let tokens;
+        before(done => {
+            chai.request(app)
+                .post('/auth/login')
+                .send({
+                    "email": "test@abc.com",
+                    "password": "234rewWTw3#",
+                })
+                .end((err, res) => {
+                    if (err) done(err)
+                    tokens = res.body;
+                    done()
+                })
+        })
+
+        it("does not throw Authorization error if proper token is provided", done => {
+            chai
+                .request(app)
+                .get('/test')
+                .set({ "Authorization": `Bearer ${tokens.token}` })
+                .end((err, res) => {
+                    assert.notEqual(res.status, 403)
+                    assert.notDeepEqual(res.body,
+                        {
+                            "message": "No Authorization details sent",
+                            "errorCode": "ERR-NOT-AUTH"
+                        }, "should not throw authentication details not sent")
+                    assert.notDeepEqual(res.body,
+                        {
+                            "message": "Invalid User",
+                            "errorCode": "ERR-NOT-AUTH"
+                        }, 
+                        "should not throw invalid user error")
+                    if (err) done(err)
+                    done()
+                })
+        })
+
+        it("throws no Authorization details sent if Authorization header is missing", done => {
+            chai
+                .request(app)
+                .get('/test')
+                .end((err, res) => {
+                    assert.equal(res.status, 403)
+                    assert.deepEqual(res.body,
+                        {
+                            "message": "No Authorization details sent",
+                            "errorCode": "ERR-NOT-AUTH"
+                        }, 
+                        "throw no Authorization details sent")
+                    if (err) done(err)
+                    done()
+                })
+        })
+
+        it("throws Not Authorized if invalid token is sent", done => {
+            chai
+                .request(app)
+                .get('/test')
+                .set({ "Authorization": `Bearer auskfypwiugbvurwyvbysvoafppnreaub`})
+                .end((err, res) => {
+                    assert.equal(res.status, 403)
+                    assert.deepEqual(res.body,
+                        {
+                            "message": "Invalid User",
+                            "errorCode": "ERR-NOT-AUTH"
+                        },  
+                        "should throw Invalid user error")
+                    if (err) done(err)
+                    done()
+                })
+        })
+    })
 })
