@@ -5,6 +5,11 @@ const { userModel } = require('../models/user');
 const { CustomError } = require('./errors');
 const { UserSessions } = require('../models/authusers');
 
+
+
+// Todo
+// Invalidate user session
+// Return only authToken as response and set refresh token as cookie
 exports.loginController = async (req, res, next) => {
     const { email, password } = req.body;
 

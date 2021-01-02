@@ -1,0 +1,16 @@
+{
+  "_id": "5fe378ad64f0ae2fba24a3bc",
+  "auth": {
+    "sessions": [
+      "5fe378ad64f0ae2fba24a3bd",
+      "5fe378ad64f0ae2fba24a3be",
+      "5fe378ad64f0ae2fba24a3bf"
+    ],
+    "devices": []
+  },
+  "createdAt": "2020-12-23T17:04:45.375Z",
+  "email": "tes@abc.com",
+  "name": "test user",
+  "password": "$2b$10$YgqWomZn1cF7/UHZwg5.VOOO/jY3.TPQyUh2xGlmB98G25GR63/4W",
+  "__v": 3
+}
