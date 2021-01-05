@@ -3,26 +3,29 @@ const mongoose = require("mongoose");
 const taskSchema = new mongoose.Schema({
     userid: mongoose.Types.ObjectId,
     projectid: mongoose.Types.ObjectId,
-    description: String,
+    description: { type: String, required: true },
     at: {
         type: Date,
         default: new Date()
     },
     start: {
-        type: Date
+        type: Date,
+        required:true
     },
     end: {
-        type: Date
+        type: Date,
+        required:true
     },
     duration: {
         type: Number,
-        default: () => {
+        default: function (model) {
+            console.log(model)
             if (this.start && this.end)
-                return Math.floor((this.end.getTime - this.start.getTime) / 1000)
+                return Math.floor((this.end.getTime() - this.start.getTime()) / 1000)
             else
                 return 0
         }
     }
 })
 
-exports.taskModel = mongoose.model("Tasks",taskSchema)
+exports.Task = mongoose.model("Tasks", taskSchema)

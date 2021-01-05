@@ -22,7 +22,7 @@ exports.authChecker = async (req, res, next) => {
         if (!foundUser)
             throw new Error()
 
-        req.body.user = userid;
+        req.body.userid = userid;
 
         next();
     }

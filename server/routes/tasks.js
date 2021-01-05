@@ -1,4 +1,5 @@
 const express = require("express");
+const { addnewtaskController, updateTaskController } = require("../controllers/task");
 
 const router = express.Router()
 
@@ -9,8 +10,8 @@ router.get("/all:since?" , (req, res, next) => {
     next();
 })
 
-router.post("/addupdatetask", (req, res, next) => {
-    
-})
+router.post("/addnewtask", addnewtaskController)
+
+router.post("/updatetask", updateTaskController)
 
 module.exports = router
