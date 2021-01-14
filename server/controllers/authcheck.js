@@ -27,6 +27,6 @@ exports.authChecker = async (req, res, next) => {
         next();
     }
     catch (err) {
-        next(new CustomError("Invalid User", 403, "ERR-NOT-AUTH"))
+        next(new CustomError(err.message, 403, "ERR-NOT-AUTH"))
     }
 }
