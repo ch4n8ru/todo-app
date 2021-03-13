@@ -22,11 +22,11 @@ exports.authChecker = async (req, res, next) => {
         if (!foundUser)
             throw new Error()
 
-        req.body.user = userid;
+        req.body.userid = userid;
 
         next();
     }
     catch (err) {
-        next(new CustomError("Invalid User", 403, "ERR-NOT-AUTH"))
+        next(new CustomError(err.message, 403, "ERR-NOT-AUTH"))
     }
 }

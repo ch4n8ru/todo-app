@@ -1,16 +1,12 @@
 const express = require("express");
+const { addnewtaskController, updateTaskController, getAllTasksController } = require("../controllers/task");
 
 const router = express.Router()
 
-router.get("/all:since?" , (req, res, next) => {
-    const since = req.query.since;
+router.get("/all:since?" , getAllTasksController)
 
-    console.log(since)
-    next();
-})
+router.post("/addnewtask", addnewtaskController)
 
-router.post("/addupdatetask", (req, res, next) => {
-    
-})
+router.post("/updatetask", updateTaskController)
 
 module.exports = router
