@@ -6,6 +6,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose');
 const AuthRoutes = require('./routes/auth');
+const TaskRoutes = require('./routes/tasks');
 const { handleErrors } = require('./controllers/errors');
 const { authChecker } = require('./controllers/authcheck');
 
@@ -16,9 +17,7 @@ app.use(cookieParser());
 
 app.use('/auth', AuthRoutes);
 
-app.use(authChecker, (req, res, next) => {
-    res.json(req.body.user)
-})
+app.use("/tasks", authChecker, TaskRoutes)
 
 app.use(handleErrors);
 

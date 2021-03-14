@@ -3,9 +3,10 @@ const chai = require("chai");
 const chaiHttp = require("chai-http");
 const { it } = require("mocha");
 const mongoose = require('mongoose');
-const userModel = require("../models/user")
-const { expect, assert } = chai;
+const { assert } = chai;
 chai.use(chaiHttp);
+const users = require("./testdata/users.json")
+
 
 before((done) => {
     try {

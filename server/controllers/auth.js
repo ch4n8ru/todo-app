@@ -5,6 +5,11 @@ const { userModel } = require('../models/user');
 const { CustomError } = require('./errors');
 const { UserSessions } = require('../models/authusers');
 
+
+
+// Todo
+// Invalidate user session
+// Return only authToken as response and set refresh token as cookie
 exports.loginController = async (req, res, next) => {
     const { email, password } = req.body;
 
@@ -68,6 +73,7 @@ exports.loginController = async (req, res, next) => {
 exports.logoutController = async (req, res, next) => {
     const { token } = req.body;
     try {
+        // todo search for session and delete it from db
         const foundSession = await UserSessions.findOne({ accessToken: token }).exec();
         const tokenValid = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, {
             complete: true,

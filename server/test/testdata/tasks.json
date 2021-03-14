@@ -1,0 +1,142 @@
+[
+    {
+      "_id": "5fe3775c1e250e1f01e5ce9a",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "XYLAR",
+      "tags": [
+        "dolor",
+        "duis",
+        "deserunt"
+      ],
+      "at": "Mon Dec 07 2020 11:07:38 GMT+0000 (UTC)",
+      "start": "Fri Dec 25 2020 18:43:44 GMT+0000 (UTC)",
+      "end": "Sat Dec 05 2020 17:48:22 GMT+0000 (UTC)",
+      "duration": 1606330989427
+    },
+    {
+      "_id": "5fe3775c4ada1de5912d264c",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "NORALI",
+      "tags": [
+        "labore",
+        "tempor",
+        "duis"
+      ],
+      "at": "Tue Dec 29 2020 19:09:26 GMT+0000 (UTC)",
+      "start": "Sat Nov 21 2020 11:01:33 GMT+0000 (UTC)",
+      "end": "Mon Nov 16 2020 15:08:26 GMT+0000 (UTC)",
+      "duration": 1606809834840
+    },
+    {
+      "_id": "5fe3775c00e92f16332cf41e",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "TELLIFLY",
+      "tags": [
+        "minim",
+        "mollit",
+        "nostrud"
+      ],
+      "at": "Mon Nov 23 2020 20:15:53 GMT+0000 (UTC)",
+      "start": "Sun Dec 06 2020 08:35:53 GMT+0000 (UTC)",
+      "end": "Mon Dec 28 2020 20:07:10 GMT+0000 (UTC)",
+      "duration": 1607515096880
+    },
+    {
+      "_id": "5fe3775cb8aa2e142edef6fe",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "GREEKER",
+      "tags": [
+        "proident",
+        "cupidatat",
+        "nostrud"
+      ],
+      "at": "Wed Dec 02 2020 05:59:20 GMT+0000 (UTC)",
+      "start": "Mon Dec 21 2020 06:06:53 GMT+0000 (UTC)",
+      "end": "Thu Nov 19 2020 22:36:08 GMT+0000 (UTC)",
+      "duration": 1608856828753
+    },
+    {
+      "_id": "5fe3775cfdba61f4e60a1098",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "PARAGONIA",
+      "tags": [
+        "ullamco",
+        "deserunt",
+        "anim"
+      ],
+      "at": "Sat Nov 07 2020 07:02:09 GMT+0000 (UTC)",
+      "start": "Wed Nov 04 2020 01:58:28 GMT+0000 (UTC)",
+      "end": "Wed Dec 30 2020 01:18:17 GMT+0000 (UTC)",
+      "duration": 1607007278497
+    },
+    {
+      "_id": "5fe3775cdb56796fdc3baf2a",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "HOTCAKES",
+      "tags": [
+        "Lorem",
+        "irure",
+        "in"
+      ],
+      "at": "Tue Nov 03 2020 00:13:02 GMT+0000 (UTC)",
+      "start": "Fri Nov 06 2020 22:11:39 GMT+0000 (UTC)",
+      "end": "Wed Dec 16 2020 01:48:01 GMT+0000 (UTC)",
+      "duration": 1605494152150
+    },
+    {
+      "_id": "5fe3775c7e819c4e0beba8ce",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "DANJA",
+      "tags": [
+        "duis",
+        "minim",
+        "aliqua"
+      ],
+      "at": "Mon Nov 30 2020 16:50:47 GMT+0000 (UTC)",
+      "start": "Sat Dec 26 2020 03:46:18 GMT+0000 (UTC)",
+      "end": "Mon Nov 30 2020 01:51:10 GMT+0000 (UTC)",
+      "duration": 1605488841198
+    },
+    {
+      "_id": "5fe3775c75de8dae00ad1388",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "ENAUT",
+      "tags": [
+        "adipisicing",
+        "quis",
+        "dolore"
+      ],
+      "at": "Sat Dec 19 2020 18:16:37 GMT+0000 (UTC)",
+      "start": "Wed Dec 30 2020 14:25:12 GMT+0000 (UTC)",
+      "end": "Sun Nov 01 2020 07:16:10 GMT+0000 (UTC)",
+      "duration": 1608941957932
+    },
+    {
+      "_id": "5fe3775c9a6991b2cd120572",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "ZEDALIS",
+      "tags": [
+        "ut",
+        "incididunt",
+        "cupidatat"
+      ],
+      "at": "Tue Nov 17 2020 10:28:33 GMT+0000 (UTC)",
+      "start": "Thu Nov 26 2020 09:06:28 GMT+0000 (UTC)",
+      "end": "Sun Dec 13 2020 04:11:09 GMT+0000 (UTC)",
+      "duration": 1604192755532
+    },
+    {
+      "_id": "5fe3775caae54bf8e7549b36",
+      "userid":"5ff0885119ebb86b95aa53f4",
+      "description": "EQUICOM",
+      "tags": [
+        "ipsum",
+        "velit",
+        "fugiat"
+      ],
+      "at": "Sun Dec 13 2020 06:00:43 GMT+0000 (UTC)",
+      "start": "Fri Nov 20 2020 06:01:27 GMT+0000 (UTC)",
+      "end": "Wed Nov 11 2020 08:17:24 GMT+0000 (UTC)",
+      "duration": 1605558079898
+    }
+  ]
